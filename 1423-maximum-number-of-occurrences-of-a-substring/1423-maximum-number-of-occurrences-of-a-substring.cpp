@@ -10,10 +10,12 @@ public:
             unique[s[r]]++;
         }
         r--;
+        int ans = 0;
         while(r < s.length()){
             if(unique.size() <= maxLetters){
                 cout<<unique.size()<<" "<<l<<r<<endl;
                 mp[s.substr(l, r-l+1)]++;
+                ans = max(ans, mp[s.substr(l, r-l+1)]);
             }
             unique[s[l]]--;
             if(unique[s[l]] == 0) unique.erase(s[l]);
@@ -21,10 +23,9 @@ public:
             r++;
             unique[s[r]]++;
         }
-        int ans = 0;
-        for(auto it: mp){
-            ans = max(ans, it.second);
-        }
+        // for(auto it: mp){
+        //     ans = max(ans, it.second);
+        // }
         //if(ans == 1) return 0;
         return ans;
     }
